@@ -5,14 +5,14 @@ import 'package:mvvm_project/utils/utils.dart';
 import 'package:mvvm_project/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
-class LoginView extends StatefulWidget {
-  const LoginView({super.key});
+class SignupView extends StatefulWidget {
+  const SignupView({super.key});
 
   @override
-  State<LoginView> createState() => _LoginScreenState();
+  State<SignupView> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginView> {
+class _LoginScreenState extends State<SignupView> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
@@ -86,8 +86,8 @@ class _LoginScreenState extends State<LoginView> {
 
             SizedBox(height: height * .085),
             RoundButton(
-              titla: "Login",
-              loading: authViewModel.loading,
+              titla: "SignUp",
+              loading: authViewModel.signupLoading,
               onTap: () {
                 if (_emailController.text.isEmpty) {
                   Utils.flushBarErrorMessage("Please Enter Email", context);
@@ -103,16 +103,16 @@ class _LoginScreenState extends State<LoginView> {
                     "email": _emailController.text.toString(),
                     "password": _passwordController.text.toString(),
                   };
-                  authViewModel.loginApi(data, context);
+                  authViewModel.signupApi(data, context);
                 }
               },
             ),
             SizedBox(height: height * .02),
             InkWell(
               onTap: () {
-                Navigator.pushNamed(context, RoutesName.sign);
+                Navigator.pushNamed(context, RoutesName.login);
               },
-              child: Text("Don't have an account? signup"),
+              child: Text("Already have an account? Login"),
             ),
           ],
         ),
